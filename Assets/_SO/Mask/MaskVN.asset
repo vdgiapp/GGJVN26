@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fdfbe42c48e38aa408c114f7f8c0bceb, type: 3}
-  m_Name: CustomerVN
+  m_Name: MaskVN
   m_EditorClassIdentifier: Assembly-CSharp::MaskSO
-  country: 
-  maskName: 
-  Messages: []
-  maskPrefab: {fileID: 0}
+  maskName: MaskVN
+  MessageGroups:
+  - Messages:
+    - Xin chao toi den tu HN toi muon mua A
+  - Messages:
+    - Xin chao toi den tu HCM toi muon mua A
