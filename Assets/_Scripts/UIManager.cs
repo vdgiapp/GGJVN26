@@ -11,6 +11,10 @@ public class UIManager : MonoBehaviour
 
     [Header("Tooltip")]
     [SerializeField] private Text tooltipText;
+    [SerializeField] private Text holdingText;
+
+    [Header("Result")]
+    [SerializeField] private Text resultText;
 
     public void ShowGameUI()
     {
@@ -24,11 +28,26 @@ public class UIManager : MonoBehaviour
     {
         pauseCanvas.SetActive(show);
     }
+    
+    public void ShowGameOverUI(bool show)
+    {
+        gameOverCanvas.SetActive(show);
+    }
 
     public void ShowTooltip(string message)
     {
         tooltipText.text = message;
         tooltipText.gameObject.SetActive(true);
+    }
+
+    public void ShowHoldingText(string text)
+    {
+        holdingText.text = text;
+    }
+
+    public void SetResultCount(int count, int total)
+    {
+        resultText.text = $"Satisfied customers: {count}/{total}";
     }
 
     public void HideTooltip()

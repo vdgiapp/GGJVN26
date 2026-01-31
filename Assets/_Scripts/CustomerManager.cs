@@ -6,6 +6,7 @@ public class CustomerManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _customerPrefabs;
     [SerializeField] private Transform _spawnPosition;
+    [SerializeField] private Transform _buyPosition;
     [SerializeField] private float _moveDuration = 7f;
     [SerializeField] private CustomerEventRegistry _eventRegistry;
     
@@ -40,7 +41,7 @@ public class CustomerManager : MonoBehaviour
         else
         {
             // Move in normal
-            _currentCustomer.transform.DOMoveX(0.0f, _moveDuration);
+            _currentCustomer.transform.DOMoveX(_buyPosition.position.x, _moveDuration);
         }
     }
     
@@ -93,7 +94,7 @@ public class CustomerManager : MonoBehaviour
                 // destroy customer sau khi đọc xong
                 if (customer != null)
                 {
-                    _currentCustomer.transform.DOMoveX(_spawnPosition.position.x, 5f).onComplete += () =>
+                    _currentCustomer.transform.DOMoveX(_spawnPosition.position.x, _moveDuration).onComplete += () =>
                     {
                         ICustomerEvent e = _eventRegistry.GetEvent(_currentCustomer.customerData.customerEvent);
                         e?.OnLeave(_currentCustomer);
@@ -116,9 +117,8 @@ public class CustomerManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("End customers!");
-            Debug.Log("Total success: " + _successCount);
-            Debug.Log("Total failed: " + _failedCount);
+            GameManager.instance.GameOver();
+            GameManager.instance.ui.SetResultCount(_successCount, _customerPrefabs.Count);
         }
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HappyGuy
   m_EditorClassIdentifier: Assembly-CSharp::CustomerSO
   customerEvent: 
-  requiredMaskId: 
+  requiredMaskId: kitsune
   messages:
   - Hello. I want something that feels light.
   - Like nothing is wrong.

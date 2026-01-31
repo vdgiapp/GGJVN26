@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde76fe49c69408ebfe10e9826a758b6, type: 3}
+  m_Name: ScaryGuy
+  m_EditorClassIdentifier: Assembly-CSharp::CustomerSO
+  customerEvent: scaryguy1
+  requiredMaskId: medical
+  messages:
+  - Oh-hey!
+  - Welcome to our little jam booth.
+  - "It\u2019s our first Game Jam ever"
+  - "We\u2019re still learning everything... coding took forever\u2026"
+  - "Art too\u2026 super rushed. But we didn\u2019t give up!"
+  - We made it this far.
+  - "My brain is melting\u2026"
+  - Oh... and can you bring me the Medical mask? I really need it.
+  failedMessages:
+  - "Uh\u2026 I think this one isn\u2019t it"
+  - But hey - thank you for bringing it anyway.
+  - "And honestly\u2026 big thanks to the organizers for running this Game Jam"
+  - "And thanks to the judges too\u2026 we know our game still has a lot of problems"
+  - "But we\u2019re learning, and we\u2019ll keep getting better\u2026 thank you
+    for giving it a chance."
+  - "We\u2019ll definitely improve and do better in the next jam! Good luck and have
+    fun playing!"
+  successMessages:
+  - "YES! That\u2019s the one"
+  - Medical mask acquired
+  - You saved our run. Thank you, seriously!
+  - "And honestly\u2026 big thanks to the organizers for running this Game Jam"
+  - "And thanks to the judges too\u2026 we know our game still has a lot of problems"
+  - "We\u2019ll definitely improve and do better in the next jam! Good luck and have
+    fun playing!"

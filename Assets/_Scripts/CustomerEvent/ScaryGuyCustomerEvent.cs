@@ -9,8 +9,10 @@ public class ScaryGuyCustomerEvent : ICustomerEvent
     {
         DOTween.To(() => RenderSettings.ambientSkyColor, x => RenderSettings.ambientSkyColor = x, new Color(0.1245283f, 0.1245283f, 0.1245283f), 5f);
         DOTween.To(() => RenderSettings.ambientEquatorColor, x => RenderSettings.ambientEquatorColor = x, new Color(0.1245283f, 0.1245283f, 0.1245283f), 5f);
-        customer.transform.position = new Vector3(0, -2, 0);
-        customer.transform.DOMoveY(2f, 7f);
+        DOTween.To(() => GameManager.instance.musicSource.volume, x => GameManager.instance.musicSource.volume = x, 0f, 5f);
+        
+        customer.transform.position = new Vector3(1, -2, 0);
+        customer.transform.DOMoveY(1.08f, 7f);
     }
 
     public void OnTalkStart(Customer customer)
@@ -35,7 +37,8 @@ public class ScaryGuyCustomerEvent : ICustomerEvent
     {
         DOTween.To(() => RenderSettings.ambientSkyColor, x => RenderSettings.ambientSkyColor = x, Color.white, 5f);
         DOTween.To(() => RenderSettings.ambientEquatorColor, x => RenderSettings.ambientEquatorColor = x, Color.white, 5f);
-        
+        DOTween.To(() => GameManager.instance.musicSource.volume, x => GameManager.instance.musicSource.volume = x, 1f, 5f);
+
         customer.gameObject.SetActive(false);
         Object.Destroy(customer.gameObject);
         

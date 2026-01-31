@@ -3,13 +3,12 @@ using UnityEngine;
 
 public class Customer : MonoBehaviour
 {
+    private static readonly int IsWalking = Animator.StringToHash("isWalking");
     public CustomerSO customerData;
 
     public bool isTalked;
     public bool isServed;
     
-    // nếu có con có animation khác thì thêm
-    public Animator animator;
     public int currentMessageIndex;
     
     public bool CheckForRequiredMask(string maskId)

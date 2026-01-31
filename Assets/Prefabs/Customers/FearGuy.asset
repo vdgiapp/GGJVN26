@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: FearGuy
   m_EditorClassIdentifier: Assembly-CSharp::CustomerSO
   customerEvent: 
-  requiredMaskId: 
+  requiredMaskId: baghead
   messages:
   - "I don\u2019t feel safe."
-  - Like something is watching.
-  - I want it to show that.
+  - "Like something\u2019s watching me."
+  - I need something to cover my head :(
   failedMessages:
-  - This feels calm.
-  - It hides the problem.
-  - "I don\u2019t trust it."
+  - "No\u2026 this won\u2019t help."
+  - I can still feel it staring.
+  - Not safe enough.
   successMessages:
-  - "Yes\u2026 that\u2019s uncomfortable"
-  - It fits
-  - "That\u2019s enough."
+  - "Good\u2026 it blocks everything."
+  - I can breathe again.
+  - "Thanks. Don\u2019t look at me."

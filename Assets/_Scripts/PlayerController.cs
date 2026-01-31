@@ -157,6 +157,7 @@ public class PlayerController : MonoBehaviour
             col.enabled = false;
         }
         
+        GameManager.instance.ui.ShowHoldingText("Holding: " + maskShelf.maskData.maskTooltip);
         holdingMaskId = maskShelf.maskData.maskId;
         isHoldingMask = true;
         _holdingObject = maskObject;
@@ -164,6 +165,8 @@ public class PlayerController : MonoBehaviour
 
     private void DestroyHoldingMask()
     {
+        GameManager.instance.ui.ShowHoldingText("");
+        
         Destroy(_holdingObject);
         _holdingObject = null;
             

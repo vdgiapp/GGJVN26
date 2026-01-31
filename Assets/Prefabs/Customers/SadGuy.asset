@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: SadGuy
   m_EditorClassIdentifier: Assembly-CSharp::CustomerSO
   customerEvent: 
-  requiredMaskId: 
+  requiredMaskId: shyguy
   messages:
   - "I\u2019m looking for something quiet."
   - Not empty. Just low.
-  - "It shouldn\u2019t draw attention"
+  - "Something that won\u2019t stand out"
   failedMessages:
-  - This is too much.
-  - It feels noisy.
-  - "That\u2019s not how I feel."
+  - Too loud
+  - It draws eyes
+  - "That\u2019s not me"
   successMessages:
-  - "\u2026Yes."
-  - That matches
-  - Thank you.
+  - ...Yeah. This works
+  - It feels safe
+  - Thank you

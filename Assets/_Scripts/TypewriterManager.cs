@@ -8,6 +8,7 @@ public class TypewriterManager : MonoBehaviour
 {
     [SerializeField] private Text _messageText;
     [SerializeField] private float _characterDelay = 0.05f;
+    [SerializeField] private AudioSource _dialogueAudioSource;
     
     private Coroutine _typingCoroutine;
     private bool _isTyping;
@@ -57,6 +58,7 @@ public class TypewriterManager : MonoBehaviour
         for (int i = 0; i < message.Length; i++)
         {
             _messageText.text += message[i];
+            _dialogueAudioSource.Play();
             yield return new WaitForSeconds(_characterDelay);
         }
 

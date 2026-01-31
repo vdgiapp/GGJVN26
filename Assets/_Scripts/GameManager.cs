@@ -30,8 +30,9 @@ public class GameManager : MonoBehaviour
 
         isGameStarted = true;
         
-        player.gameObject.SetActive(true);
+        menuCamera.enabled = false;
         menuCamera.gameObject.SetActive(false);
+        player.gameObject.SetActive(true);
         
         musicSource.spatialBlend = 0.75f;
 
@@ -65,5 +66,16 @@ public class GameManager : MonoBehaviour
         
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    public void GameOver()
+    {
+        Time.timeScale = 0f;
+        
+        ui.ShowGameOverUI(true);
+        isGameOver = true;
+        
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
