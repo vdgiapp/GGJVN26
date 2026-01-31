@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -19,10 +18,12 @@ public class GameManager : MonoBehaviour
 
     Customer currentCustomer;
     Customer LastestCustomer;
-
+    [Header("AnswerMessages")]
+    public List<string> TrueMessage = new List<string>();
+    public List<string> FalseMessage = new List<string>();
     [Header("UI")]
     public Text MessageText;
-    
+
     private void Awake()
     {
         if (Instance == null)
@@ -312,11 +313,27 @@ public class GameManager : MonoBehaviour
     {
         if (selectedMask == currentCustomer.GetWantedMask())
         {
-            MessageText.text = "Correct! You selected the right mask.";
+            if (TrueMessage.Count == 0)
+            {
+                MessageText.text = "Correct Mask!";
+            }
+            else
+            {
+                string trueMsg = TrueMessage[Random.Range(0, TrueMessage.Count)];
+                MessageText.text = trueMsg;
+            }
         }
         else
         {
-            MessageText.text = "Incorrect! Bad Store.";
+            if (FalseMessage.Count == 0)
+            {
+                MessageText.text = "Wrong Mask!";
+            }
+            else
+            {
+                string falseMsg = FalseMessage[Random.Range(0, FalseMessage.Count)];
+                MessageText.text = falseMsg;
+            }
         }
 
         // mark current as served
