@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,9 +21,8 @@ public class GameManager : MonoBehaviour
     Customer LastestCustomer;
 
     [Header("UI")]
-    public TextMeshProUGUI MessageText;
-    public TextMeshProUGUI moneyText;
-    public int Money = 0;
+    public Text MessageText;
+    
     private void Awake()
     {
         if (Instance == null)
@@ -38,7 +38,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SpawnCustomerNormal();
-        UpdateScore(0);
     }
     #region Customer Spawning
 
@@ -322,7 +321,6 @@ public class GameManager : MonoBehaviour
             MessageText.text = "Incorrect! Try again.";
             bonus = -10;
         }
-        UpdateScore(bonus);
 
         // mark current as served
         currentCustomer.Served = true;
@@ -342,11 +340,6 @@ public class GameManager : MonoBehaviour
     }
     #endregion
     #region UI Handlers
-    private void UpdateScore(int bonus)
-    {
-        Money += bonus;
-        moneyText.text = Money.ToString();
-    }
     private void NextMessages()
     {
         if(currentCustomer != null)
