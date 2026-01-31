@@ -15,6 +15,8 @@ MonoBehaviour:
   maskName: MaskVN
   MessageGroups:
   - Messages:
-    - Xin chao toi den tu HN toi muon mua A
-  - Messages:
-    - Xin chao toi den tu HCM toi muon mua A
+    - "Ch\xE0o shop, t\xF4i \u0111ang t\xECm m\u1ED9t chi\u1EBFc m\u1EB7t n\u1EA1."
+    - "\u1EDE \u0111\xE2y c\xF3 b\xE1n m\u1EB7t n\u1EA1 kh\xF4ng"
+    - "T\xF4i c\u1EA7n mua m\u1ED9t chi\u1EBFc g\u1EA5p."
+    - "T\xF4i c\u1EA7n m\u1EB7t n\u1EA1 \u0111\u1EC3 tham gia  l\u1EC5 h\u1ED9i m\xFAa
+      r\u1ED1i n\u01B0\u1EDBc s\u1EAFp t\u1EDBi."

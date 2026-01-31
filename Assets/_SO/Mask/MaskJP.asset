@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdfbe42c48e38aa408c114f7f8c0bceb, type: 3}
   m_Name: MaskJP
   m_EditorClassIdentifier: Assembly-CSharp::MaskSO
-  country: Japan
   maskName: Kitsune
-  Messages:
-  - Message_1
-  - Message_2
-  maskPrefab: {fileID: 0}
+  MessageGroups:
+  - Messages:
+    - "Nghe n\xF3i c\u1EEDa h\xE0ng n\xE0y nhi\u1EC1u m\u1EABu l\u1EAFm."
+    - "Cho t\xF4i m\u1EB7t n\u1EA1 H\u1ED3 Ly."
+    - "T\xF4i \u0111\u1EE3i \u0111\u01B0\u1EE3c, nh\u01B0ng nhanh l\xEAn nh\xE9\u2026"

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: CustomerNormal
   m_EditorClassIdentifier: Assembly-CSharp::CustomerSO
   type: 0
-  Mask: {fileID: 11400000, guid: 4557508ac67495a4eb33ae4b91db1bce, type: 2}
-  rewardBase: 10
+  Masks:
+  - {fileID: 11400000, guid: 4557508ac67495a4eb33ae4b91db1bce, type: 2}
+  - {fileID: 11400000, guid: 0bed8e787a6bef84d9be3ac53149a2c8, type: 2}
   IsFirst: 0
