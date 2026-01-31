@@ -6,6 +6,8 @@ public class CustomerManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _customerPrefabs;
     [SerializeField] private Transform _spawnPosition;
+    [SerializeField] private float _moveDuration = 7f;
+    [SerializeField] private CustomerEventRegistry _eventRegistry;
     
     private int _currentCustomerIndex;
     private int _successCount;
@@ -29,8 +31,17 @@ public class CustomerManager : MonoBehaviour
         GameObject customerObject = Instantiate(_customerPrefabs[index], _spawnPosition.position, Quaternion.identity);
         _currentCustomer = customerObject.GetComponent<Customer>();
 
-        // Move in
-        _currentCustomer.transform.DOMoveX(0.0f, 5f);
+        ICustomerEvent e = _eventRegistry.GetEvent(_currentCustomer.customerData.customerEvent);
+        if (e != null)
+        {
+            // Perform special event spawn
+            e?.OnSpawn(_currentCustomer);
+        }
+        else
+        {
+            // Move in normal
+            _currentCustomer.transform.DOMoveX(0.0f, _moveDuration);
+        }
     }
     
     public void SpawnNextCustomer()
@@ -43,8 +54,17 @@ public class CustomerManager : MonoBehaviour
     {
         if (customer == null) return;
 
-        // dialogue bình thường
-        GameManager.instance.typewriter.StartDialogue(customer.customerData.messages);
+        ICustomerEvent e = _eventRegistry.GetEvent(_currentCustomer.customerData.customerEvent);
+        if (e != null)
+        {
+            // Perform special event on talk start
+            e?.OnTalkStart(_currentCustomer);
+        }
+        else
+        {
+            // Start dialogue normal
+            GameManager.instance.typewriter.StartDialogue(customer.customerData.messages);
+        }
     }
     
     public void GiveMaskToCustomer(Customer customer, bool success)
@@ -57,30 +77,48 @@ public class CustomerManager : MonoBehaviour
 
         if (success) _successCount++;
         else _failedCount++;
-
-        List<string> resultMessages = success ? customer.customerData.successMessages : customer.customerData.failedMessages;
-
-        // chạy hội thoại kết quả -> xong mới xử lý customer
-        GameManager.instance.typewriter.StartDialogue(resultMessages, () =>
+        
+        ICustomerEvent e = _eventRegistry.GetEvent(_currentCustomer.customerData.customerEvent);
+        if (e != null)
         {
-            // destroy customer sau khi đọc xong
-            if (customer != null)
-            {
-                customer.gameObject.SetActive(false);
-                Destroy(customer.gameObject);
-            }
+            e?.OnServed(_currentCustomer, success);
+        }
+        else
+        {
+            List<string> resultMessages = success ? customer.customerData.successMessages : customer.customerData.failedMessages;
 
-            // spawn tiếp
-            if (_currentCustomerIndex + 1 < _customerPrefabs.Count)
+            // chạy hội thoại kết quả -> xong mới xử lý customer
+            GameManager.instance.typewriter.StartDialogue(resultMessages, () =>
             {
-                SpawnNextCustomer();
-            }
-            else
-            {
-                Debug.Log("End customers!");
-                Debug.Log("Total success: " + _successCount);
-                Debug.Log("Total failed: " + _failedCount);
-            }
-        });
+                // destroy customer sau khi đọc xong
+                if (customer != null)
+                {
+                    _currentCustomer.transform.DOMoveX(_spawnPosition.position.x, 5f).onComplete += () =>
+                    {
+                        ICustomerEvent e = _eventRegistry.GetEvent(_currentCustomer.customerData.customerEvent);
+                        e?.OnLeave(_currentCustomer);
+
+                        customer.gameObject.SetActive(false);
+                        Destroy(customer.gameObject);
+                        
+                        CheckAndSpawnNextCustomer();
+                    };
+                }
+            });
+        }
+    }
+
+    public void CheckAndSpawnNextCustomer()
+    {
+        if (_currentCustomerIndex + 1 < _customerPrefabs.Count)
+        {
+            SpawnNextCustomer();
+        }
+        else
+        {
+            Debug.Log("End customers!");
+            Debug.Log("Total success: " + _successCount);
+            Debug.Log("Total failed: " + _failedCount);
+        }
     }
 }

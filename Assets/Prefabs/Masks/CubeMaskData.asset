@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54a73d8ea9664402ad62f90497cec451, type: 3}
-  m_Name: MaskData
+  m_Name: CubeMaskData
   m_EditorClassIdentifier: Assembly-CSharp::MaskSO
-  maskId: capsuletest
-  maskTooltip: Capsule Test Mask
-  maskPrefab: {fileID: 8338619995224547026, guid: 73cfa96dc829cb843b420cd9650fc55d, type: 3}
+  maskId: cubetest
+  maskTooltip: Cube Test Mask
+  maskPrefab: {fileID: 8338619995224547026, guid: 651eddf22cc11b24fb498bd486e7e935, type: 3}
   isLimited: 0

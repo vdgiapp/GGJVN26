@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CustomerData", menuName = "Scriptable Objects/Customer Data", order = 1)]
 public class CustomerSO : ScriptableObject
 {
-    public string customerId; // for some special customer
+    public string customerEvent; // for some special customer
     public string requiredMaskId;
     
     [TextArea] public List<string> messages;

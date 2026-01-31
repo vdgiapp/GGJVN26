@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     
     [Header("Movement")]
     public float moveSpeed = 4f;
+    public float lockYPosition = 1.08f;
     
     [Header("Mouse Look")]
     public float mouseSensitivity = 150f;
@@ -31,11 +32,7 @@ public class PlayerController : MonoBehaviour
         if (!GameManager.instance.isGameStarted) return;
         
         // Pause
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            if (!GameManager.instance.isPaused) GameManager.instance.PauseGame();
-            else GameManager.instance.ResumeGame();
-        }
+        HandlePause();
         if (GameManager.instance.isPaused) return;
         HandleMovement();
         HandleInteraction();
@@ -47,6 +44,15 @@ public class PlayerController : MonoBehaviour
         HandleMouseLook();
     }
 
+    private void HandlePause()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (!GameManager.instance.isPaused) GameManager.instance.PauseGame();
+            else GameManager.instance.ResumeGame();
+        }
+    }
+
     private void HandleMovement()
     {
         // WASD input
@@ -55,6 +61,11 @@ public class PlayerController : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move * moveSpeed * Time.deltaTime);
+        
+        // lock y position
+        Vector3 p = transform.position;
+        float deltaY = lockYPosition - p.y;
+        controller.Move(new Vector3(0f, deltaY, 0f));
     }
 
     private void HandleMouseLook()
@@ -76,16 +87,6 @@ public class PlayerController : MonoBehaviour
         LookForInteractable();
         if (Input.GetKeyDown(KeyCode.E))
         {
-            // Nếu đang dialogue -> E dùng để Skip/Continue
-            TypewriterManager typewriter = GameManager.instance.typewriter;
-            if (typewriter.IsInDialogue())
-            {
-                if (typewriter.IsTyping()) typewriter.SkipTypingText();
-                else if (typewriter.CanContinue()) typewriter.ContinueMessageText();
-                return;
-            }
-            
-            // Nếu không dialogue -> xử lý tương tác bình thường
             if (_lookingMaskShelf != null)
             {
                 CheckForPickupMask(_lookingMaskShelf);
@@ -93,10 +94,16 @@ public class PlayerController : MonoBehaviour
 
             if (_lookingCustomer != null)
             {
-                if (!_lookingCustomer.isTalked)
-                    TalkToCustomer(_lookingCustomer);
-                else if (isHoldingMask && !_lookingCustomer.isServed)
-                    GiveMaskToCustomer(_lookingCustomer);
+                TypewriterManager typewriter = GameManager.instance.typewriter;
+                if (typewriter.IsInDialogue())
+                {
+                    if (typewriter.IsTyping()) typewriter.SkipTypingText();
+                    else if (typewriter.CanContinue()) typewriter.ContinueMessageText();
+                    return;
+                }
+                
+                if (!_lookingCustomer.isTalked) TalkToCustomer(_lookingCustomer);
+                else if (isHoldingMask && !_lookingCustomer.isServed) GiveMaskToCustomer(_lookingCustomer);
             }
         }
     }
