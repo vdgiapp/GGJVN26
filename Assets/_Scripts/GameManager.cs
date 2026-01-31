@@ -310,16 +310,13 @@ public class GameManager : MonoBehaviour
     #region Mechanic Check Mask
     public void TrySellMask(MaskSO selectedMask)
     {
-        int bonus;
         if (selectedMask == currentCustomer.GetWantedMask())
         {
             MessageText.text = "Correct! You selected the right mask.";
-            bonus = 10;
         }
         else
         {
-            MessageText.text = "Incorrect! Try again.";
-            bonus = -10;
+            MessageText.text = "Incorrect! Bad Store.";
         }
 
         // mark current as served
@@ -340,16 +337,9 @@ public class GameManager : MonoBehaviour
     }
     #endregion
     #region UI Handlers
-    private void NextMessages()
+    public void UpdateMessageText()
     {
-        if(currentCustomer != null)
-        {
-            string message = currentCustomer.NextMessage();
-            if (message != null)
-            {
-                MessageText.text = message;
-            }
-        }
+        //implement if needed
     }
     #endregion
 }
