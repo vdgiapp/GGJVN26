@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde76fe49c69408ebfe10e9826a758b6, type: 3}
+  m_Name: FearGuy
+  m_EditorClassIdentifier: Assembly-CSharp::CustomerSO
+  customerEvent: 
+  requiredMaskId: 
+  messages:
+  - "I don\u2019t feel safe."
+  - Like something is watching.
+  - I want it to show that.
+  failedMessages:
+  - This feels calm.
+  - It hides the problem.
+  - "I don\u2019t trust it."
+  successMessages:
+  - "Yes\u2026 that\u2019s uncomfortable"
+  - It fits
+  - "That\u2019s enough."
